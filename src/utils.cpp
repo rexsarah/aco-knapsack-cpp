@@ -6,6 +6,7 @@
 #include <string>
 
 std::pair<int, std::vector<Item>> readKnapsackInstance(const std::string& filename) {
+
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Erro ao abrir o arquivo: " << filename << std::endl;

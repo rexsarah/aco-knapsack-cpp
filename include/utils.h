@@ -1,11 +1,11 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <iostream>
 #include <vector>
 #include <string>
+#include <utility> // Para std::pair
 #include <fstream>
-#include <sstream>
+#include <iostream>
 
 struct Item {
     int id;
@@ -13,6 +13,7 @@ struct Item {
     int weight;
 };
 
-std::pair<int, std::vector<Item>> readKnapsackInstance(const std::string& filename);
+// A função de leitura da instância
+std::pair<int, std::vector<Item>> readKnapsackInstance(const std::string& filePath);
 
 #endif // UTILS_H
