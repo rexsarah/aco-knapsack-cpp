@@ -3,9 +3,7 @@
 
 #include <vector>
 #include <string>
-#include <utility> // Para std::pair
-#include <fstream>
-#include <iostream>
+#include <utility>
 
 struct Item {
     int id;
@@ -13,7 +11,7 @@ struct Item {
     int weight;
 };
 
-// A função de leitura da instância
+// Função para ler a instância do arquivo
 std::pair<int, std::vector<Item>> readKnapsackInstance(const std::string& filePath);
 
 #endif // UTILS_H

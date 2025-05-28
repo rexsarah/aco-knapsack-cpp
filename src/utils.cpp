@@ -1,15 +1,11 @@
 #include "utils.h"
-#include <iostream>
 #include <fstream>
-#include <sstream>
-#include <vector>
-#include <string>
+#include <iostream>
 
-std::pair<int, std::vector<Item>> readKnapsackInstance(const std::string& filename) {
-
-    std::ifstream file(filename);
+std::pair<int, std::vector<Item>> readKnapsackInstance(const std::string& filePath) {
+    std::ifstream file(filePath);
     if (!file.is_open()) {
-        std::cerr << "Erro ao abrir o arquivo: " << filename << std::endl;
+        std::cerr << "Erro ao abrir o arquivo: " << filePath << std::endl;
         return {0, {}};
     }
 
