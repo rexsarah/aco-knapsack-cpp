@@ -14,7 +14,7 @@ public:
         int capacity, const std::vector<Item>& items, int maxIterations, unsigned int seed);
 
     // Método principal para resolver o problema da mochila
-    std::pair<std::vector<int>, int> solve();
+    std::tuple<std::vector<int>, int, int> solve();
 
     // Getter para o histórico do melhor valor por iteração
     const std::vector<int>& getBestValueHistory() const;

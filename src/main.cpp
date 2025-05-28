@@ -11,9 +11,9 @@
 #include <fstream>
 
 // Função para salvar o resultado de uma execução no CSV
-void saveExecutionResultToCSV(std::ofstream& csvFile, int execNumber, int bestValue, double execTime, unsigned int seed, 
+void saveExecutionResultToCSV(std::ofstream& csvFile, int execNumber, int bestValue, int worstValue, double execTime, unsigned int seed, 
                               const std::vector<int>& solution, const std::vector<Item>& items) {
-    csvFile << execNumber << "," << bestValue << ","
+    csvFile << execNumber << "," << bestValue << "," << worstValue << ","
             << std::fixed << std::setprecision(4) << execTime << ","
             << seed << ",";
 
@@ -67,6 +67,7 @@ int main() {
     int numExecutions = 15;
 
     std::vector<int> bestValues;
+    std::vector<int> worstValues;               // Para armazenar os piores valores
     std::vector<std::vector<int>> bestSolutions;
     std::vector<double> executionTimes;
     std::vector<unsigned int> seedsUsed;
@@ -93,7 +94,8 @@ int main() {
         std::cerr << "Erro ao abrir arquivo CSV para escrita." << std::endl;
         return 1;
     }
-    csvFile << "Execucao,MelhorValor,Tempo,Seed,ItensIncluidos\n";
+    // Cabeçalho do CSV com coluna para pior valor
+    csvFile << "Execucao,MelhorValor,PiorValor,Tempo,Seed,ItensIncluidos\n";
 
     for (int exec = 0; exec < numExecutions; ++exec) {
         unsigned int currentSeed = initial_seed_rng();
@@ -103,21 +105,23 @@ int main() {
 
         ACO aco(numAnts, evaporationRate, alpha, beta, capacity, items, maxIterations, currentSeed);
 
-        std::pair<std::vector<int>, int> solveResult = aco.solve();
-        std::vector<int> solution = solveResult.first;
-        int value = solveResult.second;
+        std::tuple<std::vector<int>, int, int> solveResult = aco.solve();
+        std::vector<int> solution = std::get<0>(solveResult);
+        int bestValue = std::get<1>(solveResult);
+        int worstValue = std::get<2>(solveResult);
 
         auto end_time = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsed = end_time - start_time;
         double currentExecutionTime = elapsed.count();
 
-        bestValues.push_back(value);
+        bestValues.push_back(bestValue);
+        worstValues.push_back(worstValue);
         bestSolutions.push_back(solution);
         executionTimes.push_back(currentExecutionTime);
 
-        // Imprime no terminal
         std::cout << "Execucao " << std::setw(2) << exec + 1
-                  << ": Melhor valor = " << std::setw(6) << value
+                  << ": Melhor valor = " << std::setw(6) << bestValue
+                  << ", Pior valor = " << std::setw(6) << worstValue
                   << ", Tempo = " << std::fixed << std::setprecision(4) << currentExecutionTime << "s"
                   << ", Seed = " << currentSeed << std::endl;
 
@@ -135,25 +139,48 @@ int main() {
         std::cout << std::endl;
 
         // Salva resultado no CSV
-        saveExecutionResultToCSV(csvFile, exec + 1, value, currentExecutionTime, currentSeed, solution, items);
+        saveExecutionResultToCSV(csvFile, exec + 1, bestValue, worstValue, currentExecutionTime, currentSeed, solution, items);
     }
 
     csvFile.close();
 
     // --- Cálculo das métricas finais ---
 
-    double sumValues = std::accumulate(bestValues.begin(), bestValues.end(), 0.0);
-    double meanValue = sumValues / numExecutions;
+    // MÉTRICAS DOS MELHORES VALORES
+    double sumBestValues = std::accumulate(bestValues.begin(), bestValues.end(), 0.0);
+    double meanBestValue = sumBestValues / numExecutions;
 
-    double sq_sum_values = 0.0;
+    std::vector<int> sortedBestValues = bestValues;
+    std::sort(sortedBestValues.begin(), sortedBestValues.end());
+    double medianBestValue = sortedBestValues[numExecutions / 2];
+
+    double sq_sum_best = 0.0;
     for (int val : bestValues) {
-        sq_sum_values += std::pow(val - meanValue, 2);
+        sq_sum_best += std::pow(val - meanBestValue, 2);
     }
-    double std_dev_values = std::sqrt(sq_sum_values / numExecutions);
+    double std_dev_best = std::sqrt(sq_sum_best / numExecutions);
 
     int bestOfAll = *std::max_element(bestValues.begin(), bestValues.end());
-    int worstOfAll = *std::min_element(bestValues.begin(), bestValues.end());
+    int freqBest = std::count(bestValues.begin(), bestValues.end(), bestOfAll);
 
+    // MÉTRICAS DOS PIORES VALORES
+    double sumWorstValues = std::accumulate(worstValues.begin(), worstValues.end(), 0.0);
+    double meanWorstValue = sumWorstValues / numExecutions;
+
+    std::vector<int> sortedWorstValues = worstValues;
+    std::sort(sortedWorstValues.begin(), sortedWorstValues.end());
+    double medianWorstValue = sortedWorstValues[numExecutions / 2];
+
+    double sq_sum_worst = 0.0;
+    for (int val : worstValues) {
+        sq_sum_worst += std::pow(val - meanWorstValue, 2);
+    }
+    double std_dev_worst = std::sqrt(sq_sum_worst / numExecutions);
+
+    int worstOfAll = *std::min_element(worstValues.begin(), worstValues.end());
+    int freqWorst = std::count(worstValues.begin(), worstValues.end(), worstOfAll);
+
+    // MÉTRICAS DO TEMPO
     double sumTimes = std::accumulate(executionTimes.begin(), executionTimes.end(), 0.0);
     double meanTime = sumTimes / numExecutions;
 
@@ -164,11 +191,18 @@ int main() {
     double std_dev_times = std::sqrt(sq_sum_times / numExecutions);
 
     std::cout << "\n--- Resultados Finais Consolidados ---" << std::endl;
-    std::cout << "Media do melhor valor: " << std::fixed << std::setprecision(2) << meanValue << std::endl;
-    std::cout << "Desvio padrao do valor: " << std::fixed << std::setprecision(2) << std_dev_values << std::endl;
-    std::cout << "Melhor valor GLOBAL obtido: " << bestOfAll << std::endl;
-    std::cout << "Pior valor GLOBAL obtido: " << worstOfAll << std::endl;
+    std::cout << "Media do melhor valor: " << std::fixed << std::setprecision(2) << meanBestValue << std::endl;
+    std::cout << "Mediana do melhor valor: " << medianBestValue << std::endl;
+    std::cout << "Desvio padrao do valor: " << std::fixed << std::setprecision(2) << std_dev_best << std::endl;
+    std::cout << "\n>>> MELHOR VALOR GLOBAL: " << bestOfAll << " (ocorreu em " << freqBest << " execucoes)" << std::endl;
     std::cout << "---------------------------------------" << std::endl;
+
+    std::cout << "Media do pior valor: " << std::fixed << std::setprecision(2) << meanWorstValue << std::endl;
+    std::cout << "Mediana do pior valor: " << medianWorstValue << std::endl;
+    std::cout << "Desvio padrao do pior valor: " << std::fixed << std::setprecision(2) << std_dev_worst << std::endl;
+    std::cout << "\n>>> PIOR VALOR GLOBAL: " << worstOfAll << " (ocorreu em " << freqWorst << " execucoes)" << std::endl;
+    std::cout << "---------------------------------------" << std::endl;
+
     std::cout << "Media do tempo de execuçao: " << std::fixed << std::setprecision(4) << meanTime << "s" << std::endl;
     std::cout << "Desvio padrao do tempo: " << std::fixed << std::setprecision(4) << std_dev_times << "s" << std::endl;
     std::cout << "---------------------------------------" << std::endl;
