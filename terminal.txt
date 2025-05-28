@@ -1,0 +1,116 @@
+--- Parametros da Simulação ---
+Instancia do Problema: data/knapsack-instance.txt
+Capacidade da Mochila: 1550
+Numero de Itens: 100
+Numero de Formigas: 50
+Taxa de Evaporacao: 0.3
+Alpha (Importancia do Feromonio): 1.5
+Beta (Importancia da Heuristica): 2.5
+Maximo de Iteracoes por Execucao: 400
+Numero Total de Avaliacoes da Função Objetivo por Execucao: 20000
+Numero Total de Execucoes: 15
+---------------------------------
+Execucao  1: Melhor valor =   2193, Pior valor =   1917, Tempo = 1.4406s, Seed = 3388553609
+Itens incluídos: 1 2 3 5 8 10 11 12 13 14 16 18 20 22 24 26 29 31 33 35 37 38 40 42 44 47 49 51 53 55 56 58 60 62 64 66 68 71 74 76 78 81 83 85 87 89 92 93 95 97 99 
+Execucao  2: Melhor valor =   2183, Pior valor =   1921, Tempo = 1.4876s, Seed = 1245006194
+Itens incluídos: 1 2 3 5 8 10 11 13 14 16 18 20 22 24 26 29 31 32 33 35 37 38 40 42 44 45 47 49 51 53 55 58 60 62 64 66 68 70 71 74 76 78 81 83 85 87 89 92 93 97 99 
+Execucao  3: Melhor valor =   2193, Pior valor =   1919, Tempo = 1.4264s, Seed = 823723937
+Itens incluídos: 1 2 3 5 8 11 12 13 14 16 18 20 22 24 26 27 29 31 33 35 38 40 41 42 44 47 49 51 53 55 58 60 62 64 66 68 70 71 74 76 78 81 83 85 87 89 92 93 95 97 99 
+Execucao  4: Melhor valor =   2189, Pior valor =   1943, Tempo = 1.4252s, Seed = 1971417276
+Itens incluídos: 1 2 3 5 8 10 11 13 14 16 18 20 22 24 26 27 29 31 33 35 37 38 40 41 42 44 47 49 51 53 55 58 60 64 66 67 68 70 71 72 74 76 78 81 85 87 89 92 93 97 99 
+Execucao  5: Melhor valor =   2190, Pior valor =   1887, Tempo = 1.5444s, Seed = 982587292
+Itens incluídos: 1 2 3 5 8 10 13 14 16 18 20 22 24 29 31 33 35 37 38 40 42 44 47 49 51 53 55 56 58 60 62 64 66 68 70 71 72 74 76 78 79 81 83 85 87 89 92 93 97 99 
+Execucao  6: Melhor valor =   2189, Pior valor =   1906, Tempo = 1.6324s, Seed = 2171154184
+Itens incluídos: 1 2 3 5 8 11 13 14 16 18 20 22 24 26 27 29 31 32 33 35 37 38 40 42 44 47 49 51 53 55 58 60 62 64 66 68 70 71 74 76 78 79 83 85 87 89 92 93 95 97 99 
+Execucao  7: Melhor valor =   2192, Pior valor =   1922, Tempo = 1.5489s, Seed = 13496043
+Itens incluídos: 1 2 3 5 8 10 11 12 13 14 16 18 20 22 24 26 29 31 33 35 38 40 41 42 44 47 49 51 53 55 56 58 60 62 64 66 68 70 71 74 76 78 81 83 85 87 89 92 95 97 99 
+Execucao  8: Melhor valor =   2189, Pior valor =   1917, Tempo = 1.7763s, Seed = 1284540106
+Itens incluídos: 2 3 5 8 11 12 13 14 16 18 22 24 26 29 31 33 35 37 38 40 42 44 47 49 51 53 55 58 60 62 64 66 68 70 71 72 74 76 78 81 82 83 85 87 89 92 93 95 97 99 
+Execucao  9: Melhor valor =   2191, Pior valor =   1903, Tempo = 1.6393s, Seed = 3849257422
+Itens incluídos: 1 2 3 5 8 11 12 13 14 16 18 20 22 24 26 29 31 33 35 38 40 42 44 47 49 51 53 55 56 58 60 62 64 66 68 70 71 72 74 76 78 81 83 85 87 89 92 93 95 97 99 
+Execucao 10: Melhor valor =   2185, Pior valor =   1918, Tempo = 1.6286s, Seed = 2364939245
+Itens incluídos: 1 2 3 5 8 11 13 14 16 18 20 22 24 26 29 31 33 35 37 38 40 41 42 44 47 49 51 53 55 58 60 64 66 67 68 71 72 74 76 78 79 81 83 85 87 89 90 92 93 95 99 
+Execucao 11: Melhor valor =   2186, Pior valor =   1892, Tempo = 1.5753s, Seed = 164469092
+Itens incluídos: 1 2 3 5 8 11 13 14 16 18 20 22 26 29 31 33 35 37 38 40 41 42 44 47 49 51 53 55 56 58 60 64 66 68 70 71 72 74 75 76 78 81 83 85 87 89 92 93 95 97 99 
+Execucao 12: Melhor valor =   2191, Pior valor =   1921, Tempo = 1.5968s, Seed = 1911301422
+Itens incluídos: 2 3 5 8 11 12 13 14 16 18 20 22 24 26 29 31 33 35 37 38 40 42 44 47 49 51 53 55 58 60 62 64 66 68 70 71 72 74 76 78 81 83 85 87 89 90 92 93 97 99 
+Execucao 13: Melhor valor =   2189, Pior valor =   1931, Tempo = 1.8363s, Seed = 1118044693
+Itens incluídos: 2 3 5 8 10 11 12 14 16 18 20 22 26 29 31 33 35 38 40 41 42 44 47 49 51 53 55 56 58 60 62 64 66 68 70 71 74 76 78 81 83 85 87 89 90 92 93 95 97 99 
+Execucao 14: Melhor valor =   2180, Pior valor =   1915, Tempo = 1.6562s, Seed = 3241470299
+Itens incluídos: 1 2 3 5 7 8 11 12 14 16 18 20 22 24 26 27 29 31 32 33 35 38 40 42 44 47 49 51 53 55 58 60 62 64 66 68 71 72 74 76 78 81 83 85 87 90 92 95 97 99 
+Execucao 15: Melhor valor =   2183, Pior valor =   1925, Tempo = 1.4672s, Seed = 2760117889
+Itens incluídos: 1 2 3 5 8 10 11 13 14 16 18 20 22 26 27 29 31 33 35 38 40 42 44 47 49 51 53 55 58 60 61 62 64 66 67 68 70 71 72 74 78 81 83 85 87 89 92 93 95 97 99 
+
+--- Resultados Finais Consolidados ---
+Media do melhor valor: 2188.20
+Mediana do melhor valor: 2189.00
+Desvio padrao do valor: 3.82
+
+>>> MELHOR VALOR GLOBAL: 2193 (ocorreu em 2 execucoes)
+---------------------------------------
+Media do pior valor: 1915.80
+Mediana do pior valor: 1918.00
+Desvio padrao do pior valor: 13.72
+
+>>> PIOR VALOR GLOBAL: 1887 (ocorreu em 1 execucoes)
+---------------------------------------
+Media do tempo de execuçao: 1.5788s
+Desvio padrao do tempo: 0.1182s
+---------------------------------------
+
+--- Detalhes da Melhor Solucao Geral (entre todas as 15 execucoes) ---
+Valor da Solucao: 2193
+Itens Incluidos (ID - Valor, Peso):
+- Item 1 (Valor: 20, Peso: 16)
+- Item 2 (Valor: 81, Peso: 58)
+- Item 3 (Valor: 50, Peso: 35)
+- Item 5 (Valor: 30, Peso: 15)
+- Item 8 (Valor: 44, Peso: 28)
+- Item 10 (Valor: 60, Peso: 45)
+- Item 11 (Valor: 25, Peso: 19)
+- Item 12 (Valor: 88, Peso: 66)
+- Item 13 (Valor: 55, Peso: 40)
+- Item 14 (Valor: 33, Peso: 23)
+- Item 16 (Valor: 18, Peso: 12)
+- Item 18 (Valor: 42, Peso: 31)
+- Item 20 (Valor: 51, Peso: 37)
+- Item 22 (Valor: 39, Peso: 25)
+- Item 24 (Valor: 58, Peso: 43)
+- Item 26 (Valor: 29, Peso: 21)
+- Item 29 (Valor: 47, Peso: 33)
+- Item 31 (Valor: 40, Peso: 27)
+- Item 33 (Valor: 54, Peso: 39)
+- Item 35 (Valor: 26, Peso: 18)
+- Item 37 (Valor: 63, Peso: 47)
+- Item 38 (Valor: 45, Peso: 29)
+- Item 40 (Valor: 22, Peso: 14)
+- Item 42 (Valor: 52, Peso: 36)
+- Item 44 (Valor: 37, Peso: 24)
+- Item 47 (Valor: 48, Peso: 32)
+- Item 49 (Valor: 57, Peso: 42)
+- Item 51 (Valor: 24, Peso: 17)
+- Item 53 (Valor: 53, Peso: 38)
+- Item 55 (Valor: 28, Peso: 20)
+- Item 56 (Valor: 66, Peso: 51)
+- Item 58 (Valor: 49, Peso: 34)
+- Item 60 (Valor: 41, Peso: 26)
+- Item 62 (Valor: 59, Peso: 44)
+- Item 64 (Valor: 19, Peso: 13)
+- Item 66 (Valor: 46, Peso: 30)
+- Item 68 (Valor: 34, Peso: 22)
+- Item 71 (Valor: 17, Peso: 11)
+- Item 74 (Valor: 16, Peso: 10)
+- Item 76 (Valor: 50, Peso: 35)
+- Item 78 (Valor: 27, Peso: 19)
+- Item 81 (Valor: 43, Peso: 31)
+- Item 83 (Valor: 61, Peso: 45)
+- Item 85 (Valor: 23, Peso: 15)
+- Item 87 (Valor: 52, Peso: 37)
+- Item 89 (Valor: 38, Peso: 28)
+- Item 92 (Valor: 36, Peso: 25)
+- Item 93 (Valor: 63, Peso: 47)
+- Item 95 (Valor: 44, Peso: 33)
+- Item 97 (Valor: 58, Peso: 43)
+- Item 99 (Valor: 32, Peso: 21)
+Peso total: 1550
+Valor total calculado: 2193
